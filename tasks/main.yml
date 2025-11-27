@@ -1,0 +1,39 @@
+---
+- name: Install necessary tools (curl, gnupg)
+  ansible.builtin.package:
+    name:
+      - curl
+      - gnupg
+    state: present
+
+- name: Add Vector GPG key
+  ansible.builtin.apt_key:
+    url: https://packages.timber.io/public/vector/cfg/apt/timber-package-signing.key
+    state: present
+
+- name: Add Vector APT repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://packages.timber.io/public/vector/cfg/apt {{ ansible_distribution_release }} main"
+    state: present
+    filename: vector
+
+- name: Install Vector package
+  ansible.builtin.package:
+    name: vector
+    state: present
+  notify: Restart vector
+
+- name: Deploy Vector configuration
+  ansible.builtin.template:
+    src: vector.toml.j2
+    dest: /etc/vector/vector.toml
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart vector
+
+- name: Ensure Vector service is running and enabled
+  ansible.builtin.service:
+    name: vector
+    state: "{{ vector_service_state }}"
+    enabled: yes
