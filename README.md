@@ -1,6 +1,6 @@
 # Ansible Role: `vector-role`
 
-[![GitHub tag](https://img.shields.io/github/v/tag/Dmitriy-py/vector-role?sort=semver&color=blue)](https://github.com/Dmitriy-py/vector-role/releases)
+[[![GitHub tag](https://img.shields.io/github/v/tag/Dmitriy-py/vector-role?sort=semver&color=blue)](https://github.com/Dmitriy-py/vector-role/releases)
 
 [![GitHub tag](https://img.shields.io/github/v/tag/Dmitriy-py/vector-role?sort=semver&color=blue)](https://github.com/Dmitriy-py/vector-role/releases)
 
